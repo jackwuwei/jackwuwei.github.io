@@ -7,6 +7,7 @@ author:     "Jack"
 header-img: "img/ffmpeg_banner.png"
 tags:
     - Codec
+    - Coding
 ---
 ## 编解码器的处理流程
 * 解码器的工作流程如下图![decoder](/img/decoder.JPG)
