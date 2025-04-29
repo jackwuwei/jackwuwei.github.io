@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杭州五一旅行攻略</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0 10px;
+            font-weight: normal;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        h3 {
+            font-size: 1.2rem;
+            margin: 25px 0 15px;
+        }
+        .weather-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .weather-day {
+            border: 1px solid #eee;
+            padding: 15px;
+            text-align: center;
+        }
+        .day-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .weather-icon {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+        ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .spot {
+            margin-bottom: 30px;
+        }
+        .spot img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .spot-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .spot-header h3 {
+            margin: 0;
+            flex-grow: 1;
+        }
+        .spot-desc {
+            color: #666;
+        }
+        .tips {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 3px solid #1976d2;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #1976d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #1565c0;
+        }
+        .transport {
+            color: #1976d2;
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        .transport::before {
+            content: "🚕";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .nav-links a {
+            margin: 0 10px;
+            color: #1976d2;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>杭州五一4天旅游攻略</h1>
+        <p class="subtitle">感受人间天堂的魅力，探索自然与文化的完美融合</p>
+
+        <h2>五一期间杭州天气预报</h2>
+        <div class="weather-container">
+            <div class="weather-day">
+                <div class="day-title">5月1日</div>
+                <div class="weather-icon">☀️</div>
+                <div>白天: 晴</div>
+                <div>夜间: 晴</div>
+                <div>温度: 22°C-34°C</div>
+                <div>风力: 西北风 1-3级</div>
+            </div>
+            <div class="weather-day">
+                <div class="day-title">5月2日</div>
+                <div class="weather-icon">🌤️</div>
+                <div>白天: 晴</div>
+                <div>夜间: 多云</div>
+                <div>温度: 20°C-30°C</div>
+                <div>风力: 东北风 1-3级</div>
+            </div>
+            <div class="weather-day">
+                <div class="day-title">5月3日</div>
+                <div class="weather-icon">⛅</div>
+                <div>白天: 多云</div>
+                <div>夜间: 多云</div>
+                <div>温度: 19°C-28°C</div>
+                <div>风力: 东风 1-3级</div>
+            </div>
+            <div class="weather-day">
+                <div class="day-title">5月4日</div>
+                <div class="weather-icon">🌤️</div>
+                <div>白天: 多云</div>
+                <div>夜间: 晴</div>
+                <div>温度: 18°C-29°C</div>
+                <div>风力: 东南风 1-3级</div>
+            </div>
+        </div>
+
+        <div class="tips">
+            <strong>旅行小贴士：</strong>
+            <ul>
+                <li><strong>最佳旅游季节：</strong>杭州四季分明，春秋最宜人，特别是4-5月西湖周边风景最佳。</li>
+                <li><strong>防晒准备：</strong>五一期间气温较高，请做好防晒措施，携带遮阳伞。</li>
+                <li><strong>景点预约：</strong>热门景点建议提前预约，特别是中国美术学院"黑神话悟空展"展览。</li>
+                <li><strong>当地特色：</strong>西湖醋鱼、东坡肉、龙井虾仁、叫花鸡等是当地特色美食。</li>
+                <li><strong>交通方式：</strong>市内可乘坐公交、地铁或打车，西湖周边也可以租赁自行车环湖游览。</li>
+                <li><strong>手机应用：</strong>建议下载高德地图，可方便查看路线和打车。本攻略中提供的链接点击后可直接在高德地图中打开。</li>
+            </ul>
+        </div>
+
+        <h2>旅游路线地图</h2>
+        <div style="text-align: center; margin: 20px 0;">
+            <div id="container" style="width: 100%; height: 800px; position: relative;"></div>
+            <a href="amapuri://workInAmap/createWithToken?polymericId=mcp_ec25cb80e21941c7856ab87cce704034&from=MCP" class="btn" target="_blank" style="font-size: 16px; padding: 12px 20px;">📍在高德地图APP中查看详细路线</a>
+        </div>
+
+        <div class="tips">
+            <strong>酒店住宿推荐：</strong>
+            <ul>
+                <li><strong>西湖周边五星酒店：</strong>杭州西子湖四季酒店、杭州君悦酒店、杭州香格里拉饭店，靠近第一天和第四天的景点。</li>
+                <li><strong>灵隐寺附近五星酒店：</strong>杭州法云安缦酒店、杭州西子湖四季酒店，靠近第二天的行程。</li>
+                <li><strong>西溪湿地附近五星酒店：</strong>杭州西溪悦榕庄酒店、杭州西溪悦椿度假酒店，靠近第三天的行程。</li>
+                <li><strong>钱江新城五星酒店：</strong>杭州柏悦酒店、杭州钱江新城万豪酒店，靠近第四天下午的行程。</li>
+                <li><strong>温馨提示：</strong>五一期间酒店预订火爆，建议提前20天预订，推荐住在西湖附近，交通方便，景色优美。</li>
+            </ul>
+        </div>
+
+        <h2>Day 1: 西湖全景游 (5月1日)</h2>
+        <p>第一天以西湖为中心，全方位游览西湖经典景点。</p>
+
+        <div class="spot">
+            <img src="http://store.is.autonavi.com/showpic/046f7db069e380fdc29375807debee83" alt="断桥残雪">
+            <div class="spot-header">
+                <h3>断桥残雪</h3>
+            </div>
+            <p class="spot-desc">白娘子与许仙邂逅的地方，是西湖十景之一，冬季观雪景尤为著名。</p>
+            <p>建议游览时间：1小时</p>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <a href="https://uri.amap.com/navigation?to=120.149057,30.258199,断桥残雪&mode=car&src=mypage" class="btn" target="_blank">🚗导航前往</a>
+                <a href="https://uri.amap.com/search?query=断桥残雪&city=杭州" class="btn" style="background-color: #4CAF50;" target="_blank">👀查看详情</a>
+            </div>
+        </div>
+
+        <div class="spot">
+            <img src="http://store.is.autonavi.com/showpic/046f7db069e380fdc29375807debee83" alt="西湖风景区">
+            <div class="spot-header">
+                <h3>西湖风景区</h3>
+            </div>
+            <p class="spot-desc">中国首批国家级风景名胜区，有"人间天堂"的美誉，包括断桥残雪、平湖秋月等著名景点。</p>
+            <p>建议游览时间：3小时</p>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <a href="https://uri.amap.com/navigation?to=120.121288,30.222724,西湖风景区&mode=car&src=mypage" class="btn" target="_blank">🚗导航前往</a>
+                <a href="https://uri.amap.com/search?query=西湖风景区&city=杭州" class="btn" style="background-color: #4CAF50;" target="_blank">👀查看详情</a>
+            </div>
+        </div>
+
+        <div class="spot">
+            <img src="http://store.is.autonavi.com/showpic/58fbc3bf5460862ef2056ae1aa053754" alt="雷峰塔">
+            <div class="spot-header">
+                <h3>雷峰塔</h3>
+            </div>
+            <p class="spot-desc">始建于五代吴越国，与白蛇传传说相关的著名景点，登塔可俯瞰西湖全景。</p>
+            <p>建议游览时间：1.5小时</p>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <a href="https://uri.amap.com/navigation?to=120.148849,30.230934,雷峰塔&mode=car&src=mypage" class="btn" target="_blank">🚗导航前往</a>
+                <a href="https://uri.amap.com/search?query=雷峰塔&city=杭州" class="btn" style="background-color: #4CAF50;" target="_blank">👀查看详情</a>
+            </div>
+        </div>
+
+        <div class="transport">
+            <p>景点间交通：景点距离较近，可步行或乘坐电瓶船游览，西湖周边交通便利，建议徒步或骑自行车环湖游览。</p>
+        </div>
+
+        <div style="text-align: center; margin: 15px 0;">
+            <a href="https://uri.amap.com/navigation?from=120.149057,30.258199,断桥残雪&to=120.121288,30.222724,西湖风景区&mode=car&src=myapp" class="btn" target="_blank">导航去断桥残雪</a>
+            <a href="https://uri.amap.com/navigation?from=120.121288,30.222724,西湖风景区&to=120.148849,30.230934,雷峰塔&mode=car&src=myapp" class="btn" target="_blank">导航去西湖风景区</a>
+        </div>
+
+        <div class="tips">
+            <strong>推荐酒店：杭州西子湖四季酒店 ★★★★★</strong>
+            <p style="margin-top: 10px;">位于灵隐路5号，靠近西湖景区，豪华湖景房，环境优美宁静，适合度假放松。<a href="https://uri.amap.com/search?query=杭州西子湖四季酒店&city=杭州" target="_blank" style="color: #1976d2;">查看详情</a></p>
+        </div>
+
+        <h2>Day 2: 灵隐寺与茶文化之旅 (5月2日)</h2>
+        <p>第二天探访千年古刹，品味杭州龙井茶文化。</p>
+
+        <div class="spot">
+            <img src="http://store.is.autonavi.com/showpic/4aa0a6a1b6ee72c9833441f363cbb43a" alt="灵隐寺">
+            <div class="spot-header">
+                <h3>灵隐寺</h3>
+            </div>
+            <p class="spot-desc">中国佛教名寺，距今已有1700多年历史，寺内有"大雄宝殿"等众多古建筑和佛教文物。</p>
+            <p>建议游览时间：3小时</p>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <a href="https://uri.amap.com/navigation?to=120.101406,30.240826,灵隐寺&mode=car&src=mypage" class="btn" target="_blank">🚗导航前往</a>
+                <a href="https://uri.amap.com/search?query=灵隐寺&city=杭州" class="btn" style="background-color: #4CAF50;" target="_blank">👀查看详情</a>
+            </div>
+        </div>
+
+        <div class="spot">
+            <img src="http://store.is.autonavi.com/showpic/c6190b59d1ec30d103c792602c1a2e9a" alt="梅家坞茶园">
+            <div class="spot-header">
+                <h3>梅家坞茶园</h3>
+            </div>
+            <p class="spot-desc">杭州著名的龙井茶产区，拥有层层叠叠的茶园风光，可体验采茶、制茶和品茶。</p>
+            <p>建议游览时间：2.5小时</p>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <a href="https://uri.amap.com/navigation?to=120.089097,30.207308,梅家坞茶园&mode=car&src=mypage" class="btn" target="_blank">🚗导航前往</a>
+                <a href="https://uri.amap.com/search?query=梅家坞茶园&city=杭州" class="btn" style="background-color: #4CAF50;" target="_blank">👀查看详情</a>
+            </div>
+        </div>
+
+        <div class="transport">
+            <p>景点间交通：从灵隐寺到梅家坞茶园驾车约15分钟。</p>
+        </div>
+
+        <div style="text-align: center; margin: 15px 0;">
+            <a href="https://uri.amap.com/navigation?from=120.101406,30.240826,灵隐寺&to=120.089097,30.207308,梅家坞茶园&mode=car&src=myapp" class="btn" target="_blank">导航去灵隐寺</a>
+        </div>
+
+        <div class="tips">
+            <strong>推荐酒店：杭州法云安缦酒店 ★★★★★</strong>
+            <p style="margin-top: 10px;">位于西湖景区法云弄22号，毗邻灵隐寺，私密豪华的度假胜地，融合中式建筑风格。<a href="https://uri.amap.com/search?query=杭州法云安缦酒店&city=杭州" target="_blank" style="color: #1976d2;">查看详情</a></p>
+        </div>
+
+        <h2>Day 3: 西溪湿地与艺术之旅 (5月3日)</h2>
+        <p>探索国家级湿地公园，感受江南水乡的自然风光，体验中国美术学院艺术氛围。</p>
+
+        <div class="spot">
+            <img src="http://store.is.autonavi.com/showpic/ee8ba4fd213aa0ee5605e41415921500" alt="西溪湿地">
+            <div class="spot-header">
+                <h3>西溪国家湿地公园</h3>
+            </div>
+            <p class="spot-desc">中国首个国家湿地公园，以"湿地、渔庄、竹径、农庄"闻名，是都市中的一片自然净土。</p>
+            <p>建议游览时间：4小时</p>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <a href="https://uri.amap.com/navigation?to=120.061159,30.255079,西溪国家湿地公园&mode=car&src=mypage" class="btn" target="_blank">🚗导航前往</a>
+                <a href="https://uri.amap.com/search?query=西溪国家湿地公园&city=杭州" class="btn" style="background-color: #4CAF50;" target="_blank">👀查看详情</a>
+            </div>
+        </div>
+
+        <div class="spot">
+            <img src="https://aos-comment.amap.com/B023B070V2/comment/f5b0700f71b8039874284d5025c23dd8_2048_2048_80.jpg" alt="中国美术学院美术馆">
+            <div class="spot-header">
+                <h3>中国美术学院美术馆</h3>
+            </div>
+            <p class="spot-desc">著名艺术院校美术馆，五一期间推出"黑神话悟空展"特别展览，展示国产游戏《黑神话：悟空》的艺术设计和制作过程。</p>
+            <p>建议游览时间：2小时</p>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <a href="https://uri.amap.com/navigation?to=120.159751,30.242825,中国美术学院美术馆&mode=car&src=mypage" class="btn" target="_blank">🚗导航前往</a>
+                <a href="https://uri.amap.com/search?query=中国美术学院美术馆&city=杭州" class="btn" style="background-color: #4CAF50;" target="_blank">👀查看详情</a>
+            </div>
+        </div>
+
+        <div class="transport">
+            <p>景点间交通：从西溪湿地到中国美术学院美术馆驾车约25分钟。</p>
+        </div>
+
+        <div style="text-align: center; margin: 15px 0;">
+            <a href="https://uri.amap.com/navigation?from=120.061159,30.255079,西溪国家湿地公园&to=120.159751,30.242825,中国美术学院美术馆&mode=car&src=myapp" class="btn" target="_blank">导航去西溪湿地</a>
+        </div>
+
+        <div class="tips">
+            <strong>推荐酒店：杭州西溪悦榕庄酒店 ★★★★★</strong>
+            <p style="margin-top: 10px;">位于紫金港路21号，毗邻西溪湿地，拥有私人水上别墅和水乡特色的豪华度假体验。<a href="https://uri.amap.com/search?query=杭州西溪悦榕庄酒店&city=杭州" target="_blank" style="color: #1976d2;">查看详情</a></p>
+        </div>
+
+        <h2>Day 4: 城市文化探索 (5月4日)</h2>
+        <p>探索杭州城市文化和现代风貌。</p>
+
+        <div class="spot">
+            <img src="http://store.is.autonavi.com/showpic/6726f56b81871da6557190196f1ab04b" alt="河坊街">
+            <div class="spot-header">
+                <h3>河坊街</h3>
+            </div>
+            <p class="spot-desc">杭州历史最为悠久的老街，汇集众多特色店铺、餐饮和手工艺品，是体验杭州历史文化的好去处。</p>
+            <p>建议游览时间：2小时</p>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <a href="https://uri.amap.com/navigation?to=120.170979,30.236297,河坊街&mode=car&src=mypage" class="btn" target="_blank">🚗导航前往</a>
+                <a href="https://uri.amap.com/search?query=河坊街&city=杭州" class="btn" style="background-color: #4CAF50;" target="_blank">👀查看详情</a>
+            </div>
+        </div>
+
+        <div class="spot">
+            <img src="http://store.is.autonavi.com/showpic/0e1b38f070c1fcfc580cf7c150ff6db9" alt="杭州博物馆">
+            <div class="spot-header">
+                <h3>杭州博物馆</h3>
+            </div>
+            <p class="spot-desc">展示杭州历史文化、艺术的综合性博物馆，了解杭州深厚历史文化的窗口。</p>
+            <p>建议游览时间：2小时</p>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <a href="https://uri.amap.com/navigation?to=120.157356,30.255012,杭州博物馆&mode=car&src=mypage" class="btn" target="_blank">🚗导航前往</a>
+                <a href="https://uri.amap.com/search?query=杭州博物馆&city=杭州" class="btn" style="background-color: #4CAF50;" target="_blank">👀查看详情</a>
+            </div>
+        </div>
+
+        <div class="spot">
+            <img src="http://store.is.autonavi.com/showpic/db7dc0acc4bd59a64728ec3497e23d62" alt="钱江新城">
+            <div class="spot-header">
+                <h3>钱江新城</h3>
+            </div>
+            <p class="spot-desc">杭州新兴的商业中心区，有杭州地标性建筑群，晚上可欣赏钱江两岸灯光秀。</p>
+            <p>建议游览时间：3小时</p>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <a href="https://uri.amap.com/navigation?to=120.213693,30.227519,钱江新城&mode=car&src=mypage" class="btn" target="_blank">🚗导航前往</a>
+                <a href="https://uri.amap.com/search?query=钱江新城&city=杭州" class="btn" style="background-color: #4CAF50;" target="_blank">👀查看详情</a>
+            </div>
+        </div>
+
+        <div class="transport">
+            <p>景点间交通：河坊街到杭州博物馆约10分钟车程，杭州博物馆到钱江新城约20分钟车程。</p>
+        </div>
+
+        <div style="text-align: center; margin: 15px 0;">
+            <a href="https://uri.amap.com/navigation?from=120.170979,30.236297,河坊街&to=120.157356,30.255012,杭州博物馆&mode=car&src=myapp" class="btn" target="_blank">导航去河坊街</a>
+            <a href="https://uri.amap.com/navigation?from=120.157356,30.255012,杭州博物馆&to=120.213693,30.227519,钱江新城&mode=car&src=myapp" class="btn" target="_blank">导航去杭州博物馆</a>
+        </div>
+
+        <div class="tips">
+            <strong>推荐酒店：杭州柏悦酒店 ★★★★★</strong>
+            <p style="margin-top: 10px;">位于钱江路1366号，位于钱江新城核心地带，高层客房可欣赏钱塘江全景。<a href="https://uri.amap.com/search?query=杭州柏悦酒店&city=杭州" target="_blank" style="color: #1976d2;">查看详情</a></p>
+        </div>
+
+        <footer>
+            <p>© 2025 杭州五一旅游攻略 | 制作时间: 2025年4月</p>
+            <p class="nav-links">
+                <a href="#" onclick="return false;">添加到收藏夹</a>
+                <a href="#" onclick="return false;">分享攻略</a>
+                <a href="#" onclick="return false;">意见反馈</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // 行程数据
+        const itineraryData = [
+            {
+                title: "Day 1: 西湖全景游",
+                points: [
+                    {name: "断桥残雪", lon: 120.149057, lat: 30.258199, poiId: "B023B01EE6"},
+                    {name: "西湖风景区", lon: 120.121288, lat: 30.222724, poiId: "B023B13L9M"},
+                    {name: "雷峰塔", lon: 120.148849, lat: 30.230934, poiId: "B023B09LKR"}
+                ],
+                color: "#3366FF" // 蓝色
+            },
+            {
+                title: "Day 2: 灵隐寺与茶文化之旅",
+                points: [
+                    {name: "灵隐寺", lon: 120.101406, lat: 30.240826, poiId: "B023B02842"},
+                    {name: "梅家坞茶园", lon: 120.089097, lat: 30.207308, poiId: "B0FFIAVGMG"}
+                ],
+                color: "#33CC66" // 绿色
+            },
+            {
+                title: "Day 3: 西溪湿地与艺术之旅",
+                points: [
+                    {name: "西溪国家湿地公园", lon: 120.061159, lat: 30.255079, poiId: "B023B06P06"},
+                    {name: "中国美术学院美术馆", lon: 120.159751, lat: 30.242825, poiId: "B023B070V2"}
+                ],
+                color: "#FF6633" // 橙色
+            },
+            {
+                title: "Day 4: 城市文化探索",
+                points: [
+                    {name: "河坊街", lon: 120.170979, lat: 30.236297, poiId: "B023B0356I"},
+                    {name: "杭州博物馆", lon: 120.157356, lat: 30.255012, poiId: "B023B01DXN"},
+                    {name: "钱江新城", lon: 120.213693, lat: 30.227519, poiId: "B0FFGE2FJM"}
+                ],
+                color: "#FF9900" // 橙色
+            }
+        ];
+
+        window.onload = function () {
+            // 加载高德地图API
+            var url = 'https://webapi.amap.com/maps?v=2.0&key=10ee46a66e8ff51e7bdfd0f3cfa407ab';
+            var jsapi = document.createElement('script');
+            jsapi.charset = 'utf-8';
+            jsapi.src = url;
+            document.head.appendChild(jsapi);
+
+            jsapi.onload = function () {
+                initMap();
+            };
+        }
+
+        function initMap() {
+            // 创建地图实例
+            var map = new AMap.Map('container', {
+                zoom: 12,
+                center: [120.15, 30.25], // 杭州中心位置
+                viewMode: '3D',
+                pitch: 30
+            });
+
+            // 获取每天的标记数据
+            var day1Markers = itineraryData[0].points.map(function(point) {
+                return {
+                    position: [point.lon, point.lat],
+                    title: point.name,
+                    content: '<div>' + itineraryData[0].title + ': ' + point.name + '</div>'
+                };
+            });
+
+            var day2Markers = itineraryData[1].points.map(function(point) {
+                return {
+                    position: [point.lon, point.lat],
+                    title: point.name,
+                    content: '<div>' + itineraryData[1].title + ': ' + point.name + '</div>'
+                };
+            });
+
+            var day3Markers = itineraryData[2].points.map(function(point) {
+                return {
+                    position: [point.lon, point.lat],
+                    title: point.name,
+                    content: '<div>' + itineraryData[2].title + ': ' + point.name + '</div>'
+                };
+            });
+
+            var day4Markers = itineraryData[3].points.map(function(point) {
+                return {
+                    position: [point.lon, point.lat],
+                    title: point.name,
+                    content: '<div>' + itineraryData[3].title + ': ' + point.name + '</div>'
+                };
+            });
+
+            // 获取每天的颜色
+            var dayColors = itineraryData.map(day => day.color);
+
+            // 添加标记并绘制路线
+            addMarkersAndPath(map, day1Markers, dayColors[0], itineraryData[0].title, 1);
+            addMarkersAndPath(map, day2Markers, dayColors[1], itineraryData[1].title, 2);
+            addMarkersAndPath(map, day3Markers, dayColors[2], itineraryData[2].title, 3);
+            addMarkersAndPath(map, day4Markers, dayColors[3], itineraryData[3].title, 4);
+
+            // 添加图例
+            addLegend(map, dayColors);
+        }
+
+        function addMarkersAndPath(map, markerData, color, dayTitle, dayIndex) {
+            var markers = [];
+            var path = [];
+
+            // 创建标记
+            markerData.forEach(function (item, index) {
+                var marker = new AMap.Marker({
+                    position: item.position,
+                    title: item.title,
+                    map: map,
+                    anchor: 'bottom-center',
+                    icon: new AMap.Icon({
+                        size: new AMap.Size(24, 24),
+                        image: 'https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-' + dayIndex + '.png',
+                        imageSize: new AMap.Size(24, 24)
+                    })
+                });
+
+                // 信息窗体
+                var infoWindow = new AMap.InfoWindow({
+                    content: '<div style="padding:10px;font-size:14px;color:' + color + '">' +
+                        '<b>' + dayTitle + '</b><br/>' +
+                        item.title + '</div>',
+                    offset: new AMap.Pixel(0, -30),
+                    autoMove: true,
+                    closeWhenClickMap: true
+                });
+
+                marker.on('click', function () {
+                    infoWindow.open(map, marker.getPosition());
+                });
+
+                markers.push(marker);
+                path.push(item.position);
+            });
+
+            // 创建路线
+            if (path.length > 1) {
+                var polyline = new AMap.Polyline({
+                    path: path,
+                    isOutline: true,
+                    outlineColor: '#ffffff',
+                    borderWeight: 2,
+                    strokeColor: color,
+                    strokeWeight: 5,
+                    strokeStyle: 'solid',
+                    strokeOpacity: 0.9,
+                    zIndex: 50,
+                    map: map
+                });
+            }
+        }
+
+        function addLegend(map, colors) {
+            // 创建图例控件
+            var legend = document.createElement('div');
+            legend.className = 'map-legend';
+            legend.style.cssText = 'position:absolute;bottom:20px;right:20px;background:rgba(255,255,255,0.9);' +
+                                 'padding:10px;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.1);';
+
+            var html = '<div style="font-weight:bold;margin-bottom:5px;">行程路线</div>';
+
+            var days = itineraryData.map(day => day.title);
+
+            days.forEach(function (day, i) {
+                html += '<div style="margin:3px 0;"><span style="display:inline-block;width:20px;height:3px;background:' +
+                    colors[i] + ';margin-right:5px;vertical-align:middle;"></span>' + day + '</div>';
+            });
+
+            legend.innerHTML = html;
+            document.getElementById('container').appendChild(legend);
+        }
+    </script>
+</body>
+</html> 
