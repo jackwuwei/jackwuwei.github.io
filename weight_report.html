@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>苹果健康体重数据分析报告</title>
+    <style>
+        body {
+            font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #3498db;
+            font-size: 1.8em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            color: #2980b9;
+            font-size: 1.5em;
+            margin-top: 30px;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        
+        .stat-box {
+            background-color: #fff;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+            width: calc(33% - 20px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+        
+        .chart-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .chart-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .chart-description {
+            margin-top: 15px;
+            font-size: 0.95em;
+            color: #555;
+            text-align: left;
+        }
+        
+        .summary {
+            background-color: #eaf4fb;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 30px 0;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .data-source {
+            font-size: 0.9em;
+            color: #95a5a6;
+            margin-top: 50px;
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+        }
+        
+        @media (max-width: 768px) {
+            .stat-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>苹果健康数据分析报告</h1>
+        <p>基于Apple Health导出的体重记录</p>
+    </header>
+    
+    <div class="section">
+        <h2>体重数据概览</h2>
+        
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-label">记录周期</div>
+                <div class="stat-value">7年</div>
+                <div class="stat-label">2018-10-08 至 2025-05-09</div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-label">数据点数量</div>
+                <div class="stat-value">309</div>
+                <div class="stat-label">覆盖184天</div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-label">最近体重</div>
+                <div class="stat-value">64.9 kg</div>
+                <div class="stat-label">相比初始记录变化 -8.6%</div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-label">最低体重</div>
+                <div class="stat-value">64.9 kg</div>
+                <div class="stat-label">记录最低值</div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-label">最高体重</div>
+                <div class="stat-value">77.0 kg</div>
+                <div class="stat-label">记录最高值</div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-label">平均体重</div>
+                <div class="stat-value">68.0 kg</div>
+                <div class="stat-label">所有记录的平均值</div>
+            </div>
+        </div>
+        
+        <div class="summary">
+            <h3>主要发现</h3>
+            <p>整体体重下降趋势明显，从初始记录到现在共下降了6.1 kg，占初始体重的8.6%。体重变化最大的时期出现在2020年1月（增重4.0 kg）和2024年11月（减重4.6 kg）。平均每月体重变化为-0.08 kg，呈现稳定的下降趋势。</p>
+        </div>
+        
+        <div class="chart-container">
+            <img src="weight_analysis/weight_trend.png" alt="体重变化趋势" class="chart-img">
+            <div class="chart-description">
+                <strong>体重变化趋势图</strong>：蓝色散点显示每日体重记录，红色曲线为7日移动平均值，绿色标记为月度平均体重。图表明显显示出体重的总体下降趋势，同时也反映了短期内的波动。
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>体重分布分析</h2>
+        
+        <div class="chart-container">
+            <img src="weight_analysis/weight_histogram.png" alt="体重分布直方图" class="chart-img">
+            <div class="chart-description">
+                <strong>体重分布直方图</strong>：这张图展示了记录期间体重的分布情况。可以看出体重主要集中在65-70kg之间，形成了一个相对正态的分布，表明体重控制较为稳定。
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <img src="weight_analysis/weight_heatmap.png" alt="体重热力图" class="chart-img">
+            <div class="chart-description">
+                <strong>体重分布热力图</strong>：按月份和星期几展示体重变化。颜色越深表示体重越重，可用于识别哪些月份或星期几体重通常较高或较低，帮助发现体重与生活规律的关联。
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>时间模式分析</h2>
+        
+        <div class="chart-container">
+            <img src="weight_analysis/weight_seasonal.png" alt="季节性体重变化" class="chart-img">
+            <div class="chart-description">
+                <strong>季节性体重变化</strong>：这张图展示了体重随月份的变化规律。可以观察到某些月份体重较高（如冬季月份），而其他月份体重较低，这可能与季节性饮食习惯或活动水平有关。
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <img src="weight_analysis/weight_weekday.png" alt="周内体重变化趋势" class="chart-img">
+            <div class="chart-description">
+                <strong>周内体重变化趋势</strong>：展示了工作日vs周末的体重变化模式。周末体重可能略高于工作日，这可能与周末饮食规律和活动量的改变有关。
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>数据来源分析</h2>
+        
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-label">主要数据来源</div>
+                <div class="stat-value">Zepp Life</div>
+                <div class="stat-label">95.1% 的记录</div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-label">其他来源</div>
+                <div class="stat-value">InBody</div>
+                <div class="stat-label">3.9% 的记录</div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-label">其他记录</div>
+                <div class="stat-value">1.0%</div>
+                <div class="stat-label">来自其他应用和设备</div>
+            </div>
+        </div>
+        
+        <div class="summary">
+            <p>大部分体重数据来自Zepp Life，这表明用户主要使用小米体脂秤或相关设备记录体重。少量数据来自InBody专业体成分分析仪，可能是在健身房或医疗机构测量所得。</p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>结论与建议</h2>
+        
+        <div class="summary">
+            <p>根据分析的体重数据，可以得出以下结论：</p>
+            <ol>
+                <li><strong>稳定的体重下降</strong>：数据显示体重持续呈下降趋势，总共下降了8.6%，这是一个健康的成就。</li>
+                <li><strong>稳定性良好</strong>：除了少数几次较大波动外，体重变化相对平稳，反映了良好的体重管理策略。</li>
+                <li><strong>季节性影响</strong>：体重似乎受季节影响，在特定月份出现明显高低变化，了解这些模式有助于提前规划调整策略。</li>
+                <li><strong>监测频率适中</strong>：平均每2天测量一次体重(184测量日/309条记录)，这是一个合理的监测频率，有助于保持对体重变化的关注而不过分执着。</li>
+            </ol>
+            
+            <p>建议：</p>
+            <ul>
+                <li>继续保持当前的饮食和运动习惯，它们显然对体重控制有效。</li>
+                <li>在季节性体重增加时期（如冬季）提前做好策略调整，预防体重反弹。</li>
+                <li>考虑增加对其他健康指标的监测，如体脂率、肌肉量等，以获得更全面的健康状况评估。</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="data-source">
+        数据来源：苹果健康数据导出文件 (导出.xml)，共分析309条体重记录
+    </div>
+    
+    <footer>
+        <p>分析报告生成日期：2024年5月9日</p>
+        <p>此报告由数据分析脚本自动生成</p>
+    </footer>
+</body>
+</html>
