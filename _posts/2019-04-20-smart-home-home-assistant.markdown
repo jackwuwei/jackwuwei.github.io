@@ -1,10 +1,11 @@
 ---
 layout:     post
 title:      "智能家居折腾记"
-subtitle:   "Home Assistant大法好！"
-date:       2019-04-20 19:12:00
-author:     "Jack"
-header-img: "img/home-assistant-bg.png"
+description: "Home Assistant大法好！"
+date:       2019-04-20 19:12:00 +0800
+image:
+  path: /img/home-assistant-bg.png
+categories: [智能硬件]
 tags:
     - IOT
     - Home Assistant

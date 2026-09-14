@@ -1,11 +1,7 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
-gem "jekyll", "~> 4.4.1"
+gem "jekyll-theme-chirpy", "~> 7.6"
 
-group :jekyll_plugins do
-  gem "jekyll-paginate"
-end
-
-# Ruby 3.4+ no longer ships these as default gems
-gem "bigdecimal"
-gem "logger"
+gem "html-proofer", "~> 5.0", group: :test

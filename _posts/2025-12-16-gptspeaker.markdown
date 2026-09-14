@@ -1,10 +1,11 @@
 ---
 layout:     post
 title:      "用树莓派打造ChatGPT智能音箱"
-subtitle:   "GPTSpeaker：唤醒词 + Azure语音 + ChatGPT/DeepSeek"
+description: "GPTSpeaker：唤醒词 + Azure语音 + ChatGPT/DeepSeek"
 date:       2025-12-16 16:17:48 +0800
-author:     "Jack"
-header-img: "img/gptspeaker-bg.jpg"
+image:
+  path: /img/gptspeaker-bg.jpg
+categories: [智能硬件]
 tags:
     - IOT
     - AI

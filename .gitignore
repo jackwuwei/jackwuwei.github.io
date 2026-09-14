@@ -1,8 +1,25 @@
-_site
-node_modules
-.DS_Store
-*/.DS_Store
-*/*/.DS_Store
-*.sh
-/vendor
+# Bundler cache
 .bundle
+vendor
+
+# Jekyll cache
+.jekyll-cache
+.jekyll-metadata
+_site
+
+# RubyGems
+*.gem
+
+# NPM dependencies
+node_modules
+package-lock.json
+
+# Misc
+_sass/vendors
+assets/js/dist
+
+# Hidden system files
+*~
+.DS_Store
+Thumbs.db
+*.sh

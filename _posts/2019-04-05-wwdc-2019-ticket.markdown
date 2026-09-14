@@ -1,10 +1,11 @@
 ---
 layout:     post
 title:      "幸运抽到WWDC 2019门票"
-subtitle:   "WWDC我来了！"
-date:       2019-04-05 2:27:00
-author:     "Jack"
-header-img: "img/wwdc19-og.jpg"
+description: "WWDC我来了！"
+date:       2019-04-05 2:27:00 +0800
+image:
+  path: /img/wwdc19-og.jpg
+categories: [生活]
 tags:
     - 生活
     - WWDC

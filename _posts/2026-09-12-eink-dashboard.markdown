@@ -1,10 +1,11 @@
 ---
 layout:     post
 title:      "墨水屏Homelab看板"
-subtitle:   "Kindle、4.2寸墨水屏和共用的FastAPI后端"
+description: "Kindle、4.2寸墨水屏和共用的FastAPI后端"
 date:       2026-09-12 13:13:14 +0800
-author:     "Jack"
-header-img: "img/eink-dashboard-bg.jpg"
+image:
+  path: /img/eink-dashboard-bg.jpg
+categories: [智能硬件]
 tags:
     - IOT
     - Homelab

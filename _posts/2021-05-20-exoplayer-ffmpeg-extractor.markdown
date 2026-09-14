@@ -1,10 +1,11 @@
 ---
 layout:     post
 title:      "ExoPlayer通过ffmpeg支持更多容器实现说明"
-subtitle:   "FfmpegExtractor实现说明"
-date:       2020-05-20 23:24:00
-author:     "Jack"
-header-img: "img/exoplayer.png"
+description: "FfmpegExtractor实现说明"
+date:       2020-05-20 23:24:00 +0800
+image:
+  path: /img/exoplayer.png
+categories: [音视频]
 tags:
     - ExoPlayer
     - ffmpeg

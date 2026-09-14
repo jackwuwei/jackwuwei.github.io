@@ -1,10 +1,11 @@
 ---
 layout:     post
 title:      "Android音视频处理技术"
-subtitle:   "Android MediaCodec及ffmpeg"
-date:       2019-05-05 1:23:00
-author:     "Jack"
-header-img: "img/ffmpeg_banner.png"
+description: "Android MediaCodec及ffmpeg"
+date:       2019-05-05 1:23:00 +0800
+image:
+  path: /img/ffmpeg_banner.png
+categories: [音视频]
 tags:
     - Codec
     - Coding

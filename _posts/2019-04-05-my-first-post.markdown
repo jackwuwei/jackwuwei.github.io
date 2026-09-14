@@ -1,10 +1,11 @@
 ---
 layout:     post
 title:      "就这样开始吧"
-subtitle:   " \"Hello World, Github Pages\""
-date:       2019-04-05 2:00:00
-author:     "Jack"
-header-img: "img/post-bg-2015.jpg"
+description: "Hello World, Github Pages"
+date:       2019-04-05 2:00:00 +0800
+image:
+  path: /img/post-bg-2015.jpg
+categories: [生活]
 tags:
     - 生活
 ---
