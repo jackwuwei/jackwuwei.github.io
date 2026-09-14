@@ -78,7 +78,10 @@ tags:
 
 ## Kindle看板：kindle-dashboard
 
-<p align="center"><img src="/img/kindle-dashboard-screen.png" width="420" alt="Kindle看板"></p>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;align-items:center;">
+<img src="/img/kindle-dashboard-photo.jpg" alt="Kindle看板实拍" style="width:100%;margin:0;">
+<img src="/img/kindle-dashboard-screen.png" alt="Kindle看板截图" style="width:100%;margin:0;">
+</div>
 
 ### 硬件
 * Kindle Paperwhite 2（758×1024，固件5.12.2.2），已越狱，装好KUAL和USBNetwork；
@@ -112,6 +115,25 @@ tags:
 * 660mAh锂电池，TC4056充电。
 
 硬件一点没改，在这块板子上重写了一套独立固件，屏幕驱动、时钟芯片、温湿度和电压检测的逻辑从原固件移植过来，原固件的整块Flash也做了备份，随时可以刷回去。
+
+### 价格预算
+按淘宝、立创的常见零售价估算，单台物料成本**60元左右**：
+
+| 部件 | 估价（元） |
+|---|---|
+| 4.2寸墨水屏（Z96，400×300） | 15~30 |
+| ESP8266模组（4MB） | 8~12 |
+| PCB（嘉立创打样，按片均摊） | 3~5 |
+| CH340串口、SHT30温湿度、RTC时钟芯片、TC4056充电和LDO | 6~13 |
+| 墨水屏升压电路、FPC座、USB-C座、按键、拨动开关、阻容等小件 | 4~7 |
+| 660mAh锂电池（带保护板） | 6~10 |
+| 3D打印外壳（PLA约35g） | 2~3 |
+| **合计** | **45~80，典型60左右** |
+
+* **屏幕是价格的大头**：电子价签的拆机屏只要十几二十块，换全新的同尺寸屏要45~60元；其次是SHT30，国产替代约2元，原装约7元；
+* **做第一台实际要花100~150元**：PCB至少打5片，立创的阻容有起订量，淘宝和立创还要各付一次运费，可能还得买钢网或锡膏；
+* **再做一台只要50~60元**：PCB和小件都有剩，主要再买屏幕、ESP8266模组、电池和传感器；
+* 没有3D打印机的话，外壳找嘉立创代打大约15~30元；烙铁、热风枪这些工具没算进去，服务端跑在现有的NAS上，也不增加硬件成本。
 
 ### 页面
 一共6个页面，醒着的时候按键翻页：看板 → Claude用量 → 服务器详情 → 天气 → 万年历 → 设备信息。
