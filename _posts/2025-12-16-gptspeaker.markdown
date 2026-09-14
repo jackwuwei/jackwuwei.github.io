@@ -21,8 +21,11 @@ ChatGPT火了之后，每天都在网页上跟它聊天，但家里的Siri、小
 * **跨平台**：Python编写，支持Linux/Raspbian、macOS和Windows，没有树莓派用电脑也能跑。
 
 ## 演示视频
-[![GPTSpeaker演示](/img/gptspeaker-video.png)](https://www.bilibili.com/video/BV1Wo4y1K7dW/)
-> 点击图片到B站观看👆
+<div style="position:relative;width:100%;aspect-ratio:16/9;">
+<iframe src="https://player.bilibili.com/player.html?bvid=BV1Wo4y1K7dW&cid=1151926886&p=1&autoplay=0&high_quality=1&danmaku=0" title="ChatGPT智能音箱效果演示" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" scrolling="no" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe>
+</div>
+
+> 播放不了的话，可以[到B站观看](https://www.bilibili.com/video/BV1Wo4y1K7dW/)
 
 ## 硬件
 * [Raspberry Pi 3/3B/4/4B](https://www.raspberrypi.com/products/)，一张至少8G的SD卡，安装Raspberry Pi OS (64-bit)或Ubuntu 22.04；
