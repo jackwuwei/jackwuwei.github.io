@@ -1,0 +1,137 @@
+---
+layout:     post
+title:      "手搓一台能接Home Assistant的机柜温控风扇"
+description: "19寸2U机架、Arduino温控闭环、MQTT接入HA和HomeKit"
+date:       2026-09-15 21:30:00 +0800
+image:
+  path: /img/smartfan-bg.jpg
+categories: [智能硬件]
+tags:
+    - IOT
+    - Home Assistant
+    - Homelab
+    - Arduino
+---
+## 题记
+家里的网络机柜一到夏天就成了小烤箱，交换机、路由器、NAS挤在一起，摸上去烫手。想买一台机柜温控风扇，网上一搜发现两个问题：**贵**，带温控显示的2U风扇动辄两三百，能联网的更贵；**接不进Home Assistant**，要么根本不联网，要么只能用厂家自己的App，家里其他设备都在HA里，它偏偏是个孤岛。
+
+既然温控风扇的原理就是"读温度、调PWM"，那不如自己做一台：3个80mm PWM风扇按柜内温度自动调速，温控闭环跑在单片机上，**断网照常散热**；前面板OLED加旋钮可以本地操作，WiFi/MQTT接入Home Assistant，再桥接到Apple HomeKit，Siri一句话就能改目标温度。面板3D打印，所有模块用杜邦线**直插Arduino**，不用焊接，也不用一颗电阻。固件、CAD源文件、STL、原理图、接线图全部开源在Github上：[smartfan](https://github.com/jackwuwei/smartfan)。
+
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;align-items:center;">
+<img src="/img/smartfan-front.jpg" alt="前面板：3个风扇 + OLED + 旋钮" style="width:100%;margin:0;">
+<img src="/img/smartfan-rack.jpg" alt="装在家用网络机柜顶部" style="width:100%;margin:0;">
+</div>
+
+## 演示视频
+<video src="/img/smartfan-promo.mp4" poster="/img/smartfan-promo-poster.jpg" controls playsinline preload="metadata" style="display:block;width:100%;max-width:720px;margin:0 auto;"></video>
+
+## 整体设计
+```
+            +-------------------+
+ DS18B20 -->|                   |--> PWM 25kHz --> 风扇1 --> 风扇2 --> 风扇3   (PST菊花链)
+ KY-040  -->|  Arduino UNO R4   |<-- TACH (只有主风扇回传)
+            |      WiFi         |--> I2C --> 0.96" OLED
+            |                   |<-> MQTT <-> Home Assistant <-> HomeKit Bridge <-> 家庭App / Siri
+            +-------------------+
+```
+
+* **温控闭环在板子上**：每秒读一次温度，算出占空比，直接输出PWM，WiFi/MQTT/HA掉线只影响上报和远程控制，风扇照常转；
+* **一根PWM带三个风扇**：Arctic P8 PST风扇自带公母4pin头可以串接，共享GND/+12V/PWM，所以Arduino只需要接主风扇，后两个直接串在它后面；
+* **本地和远程双向同步**：设定温度、模式、手动转速存在EEPROM里，旋钮改了HA里跟着变，HA里改了OLED上跟着变；
+* **免焊**：DS18B20模块自带4.7k上拉，风扇TACH用内部上拉，所以整机没有一颗外接电阻，所有模块靠两根「1分3」杜邦线分电，其余信号线直插Arduino排针。
+
+![背面接线](/img/smartfan-rear.jpg)
+
+## 硬件清单
+按淘宝实际购买价，电子元件合计**270元左右**：
+
+| 元件 | 规格 | 数量 | 单价（元） |
+|---|---|---|---|
+| Arduino UNO R4 WiFi | 需要WiFi版 | 1 | 78 |
+| Arctic P8 PWM PST风扇 | 8025，4pin PWM，0% PWM停转 | 3 | 53.1 |
+| 12V DC适配器 | 12V 2A，5.5×2.1，中心正极 | 1 | 4.6 |
+| DS18B20温度模块 | 自带4.7k上拉 | 1 | 3.27 |
+| 0.96寸OLED | SSD1306，128×64，I2C | 1 | 12.78 |
+| KY-040旋转编码器 | 带螺纹套筒和按压 | 1 | 0.5 |
+| 「1分3」杜邦线 | 5V、GND各一根 | 2 | 2.99 |
+| 4P公对母转接线、杜邦线 | 主风扇到排针，信号线 | 若干 | 约3 |
+| **合计** | | | **约270** |
+
+另外还有面板的PETG耗材（约100g）和一把M2/M3/M4螺丝，加起来不到20元。3个风扇满速大约0.4A@12V，整机0.7A左右，12V 2A的适配器绰绰有余。
+
+### 成本还能再降
+270元里面，**Arduino UNO R4 WiFi和3个Arctic风扇就占了237元**，剩下所有模块加起来才30块。这两样都是我图省事选的：R4 WiFi一块板子就把WiFi、硬件PWM、够多的IO都凑齐了，Arctic P8 PST可以菊花链、0%停转、噪音也小。如果愿意多折腾一点，换成ESP32主控和普通的4pin PWM风扇，成本大概能压到**100元上下**：
+
+| 元件 | 替换为 | 估价（元） | 备注 |
+|---|---|---|---|
+| Arduino UNO R4 WiFi（78） | ESP32开发板 | 15~25 | 自带WiFi，LEDC硬件PWM可以直接输出25kHz，还多出蓝牙 |
+| Arctic P8 PST ×3（159） | 普通8025 4pin PWM风扇 ×3 | 30~45 | 没有PST串接功能，再买一根4pin「1分3」风扇线（约3元） |
+| 其余模块 | 不变 | 约30 | OLED、DS18B20、旋钮、电源、杜邦线 |
+| **合计** | | **约80~100** | |
+
+换ESP32要注意几点：固件里的PWM用的是R4核心的```PwmOut```类，要改成ESP32的```ledcSetup```/```ledcAttachPin```；WiFi和MQTT库换成ESP32的版本，配网门户可以直接用现成的```WiFiManager```；ESP32是3.3V逻辑，OLED和DS18B20模块都兼容，风扇的PWM输入也认3.3V电平；面板上Arduino的4个立柱要按ESP32开发板的孔位重新生成，CAD是参数化的，改几个数字就行。便宜风扇要挑**0% PWM能停转**的型号，不然HA里关掉风扇它还在低速转。
+
+## 接线
+![接线原理图](/img/smartfan-schematic.png)
+
+信号线向左到Arduino，电源线向右到三条电源轨。引脚分配如下：
+
+| 功能 | 引脚 | 说明 |
+|---|---|---|
+| 风扇PWM | D9 | 25kHz，经PST菊花链给3个风扇 |
+| 风扇TACH | D2 | 仅主风扇回传，中断计数，每转2个脉冲 |
+| DS18B20 | D4 | 1-Wire |
+| OLED | SDA / SCL | I2C，地址0x3C |
+| KY-040 | D3 / D6 / D12 | CLK / DT / SW，内部上拉 |
+| 风扇+12V | VIN | 12V从板载DC座进，VIN直接取 |
+
+![实物接线图](/img/smartfan-wiring.png)
+
+实物接线就两步：两根「1分3」杜邦线分别从5V和GND引出来，给OLED、DS18B20和旋钮供电；主风扇用一根4P转接线接到VIN、GND、D9、D2，其余信号线直插排针。上电前用万用表确认一下VIN/GND、5V/GND没短路，4pin风扇以锁扣定位1号针，插反会烧风扇。
+
+## 固件
+固件是单文件的```smartfan.ino```，非阻塞主循环：每圈读旋钮，每1秒读温度、算转速、判报警，每250ms刷OLED，每2秒往MQTT上报状态，每5秒检查WiFi/MQTT断了就重连。
+
+### 温控算法
+风扇曲线随设定温度Tset平移，默认35°C：
+* 温度低于Tset−10°C时20%，高于Tset+6°C时100%，中间线性插值；
+* 默认值下：25°C→20%、30°C→45%、35°C→70%、41°C以上→100%；
+* 占空比每秒最多变化5%，避免转速突变。
+
+四种模式：**Auto**跟曲线，**Silent**跟曲线但封顶60%，**Manual**固定手动值，**Turbo**满速。安全保护的优先级高于模式：传感器读不到或温度≥60°C强制100%并报警；占空比大于25%但主风扇转速低于60RPM判定堵转报警；报警时OLED整屏闪烁。
+
+### 旋钮与OLED
+![OLED布局](/img/smartfan-oled.png)
+
+OLED顶栏是WiFi信号和模式，中间大号温度，底部是主风扇转速和占空比。旋钮的操作逻辑：
+* **转**：调设定温度，Manual模式下调风扇百分比；
+* **短按**：切换被调项，温度→风扇%→模式；
+* **长按**：切模式，Auto→Manual→Silent→Turbo；
+* **开机按住2秒**：清除网络配置，重新配网。
+
+### 配网
+WiFi和MQTT的账号密码没有写死在代码里，首次上电OLED会显示一个二维码，手机扫码连上```RackFan-Setup```热点，配置页自动弹出，从扫描到的列表里选WiFi、填MQTT地址和设备ID，保存后自动重启。配网期间温控照常运行。
+
+### 接入Home Assistant和HomeKit
+固件用MQTT自动发现，HA里装好Mosquitto和MQTT集成后，设备上线自动出现**Smart Rack Fan**：```climate```温控器（带模式预设）、```fan```风扇（开关和调速）、```sensor```温度和转速、```binary_sensor```报警。再添加HomeKit Bridge集成，勾上```climate```实体，用家庭App扫码配对，就能对Siri说"把机柜风扇调到30度"。
+
+## 3D打印面板
+![整机](/img/smartfan-assembled.jpg)
+
+面板用[build123d](https://github.com/gumyr/build123d)参数化建模，19寸机架482.6mm的宽度超出了P1S的256mm打印床，所以切成三段，段间用舌槽对插加M3螺丝连接。右段集成了控制区：OLED显示窗和四角立柱、旋钮孔、Arduino立柱、DS18B20卡座。PETG打印，0.2mm层高、4圈墙，基本免支撑。
+
+![爆炸图](/img/smartfan-exploded.jpg)
+
+装配顺序：拼面板→装风扇（出风朝前，机柜抽风）→装OLED→装Arduino→装编码器和DS18B20→接线→上机架。
+
+## 踩过的坑
+* **旋钮CLK必须接D3**：UNO R4只有D2和D3支持外部中断，D2已经给了TACH，接到D5上编译不报错，但旋钮一直没反应；
+* **analogWrite有啸叫**：默认的PWM只有490Hz左右，风扇会发出明显的电流声，改用R4核心的```PwmOut```类输出真正的25kHz就安静了，一个引脚对应一个定时器，也避开了R4多引脚共用定时器的坑；
+* **Arduino要翻过来装**：一开始排针朝面板，杜邦线根本插不进去，最后把板子翻转180°装，排针朝后，代价是板载LED点阵朝里看不见了，所以前面板另外加了一块OLED；
+* **PST菊花链只能测主风扇转速**：链上GND/+12V/PWM共享，后两个风扇的TACH不回传，堵转检测只能看主风扇；
+* **ESP8266的DNSServer库在R4上编译不过**：配网门户需要一个抓包所有域名的DNS让手机自动弹页面，最后用```WiFiUDP```手写了一个几十行的DNS应答；
+* **只支持2.4GHz**：R4的WiFi模块只有2.4GHz，配网页面里扫不到5G的SSID是正常的；
+* **PLA会热软化**：面板贴着风扇装在机柜顶部，PLA打的用一阵子会变形，一定要用PETG。
+
+## 后续
+风扇装上以后，机柜内温度稳定在设定值附近，晚上自动降到低速基本听不见声音，HA的历史曲线也能看到温度和转速的变化。接下来打算做一版ESP32的固件，把成本压到100元以内。欢迎到Github上Star和提Issue：[smartfan](https://github.com/jackwuwei/smartfan)。
