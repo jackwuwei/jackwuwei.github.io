@@ -1,0 +1,24 @@
+<!--
+  Overrides the theme's empty metadata hook.
+  WeChat ignores `og:image` when building the share card; it reads the schema.org
+  `itemprop` metas instead, so mirror the Open Graph values here with absolute URLs.
+-->
+
+{% assign wx_src = page.image.path | default: page.image | default: site.social_preview_image %}
+
+{% if wx_src %}
+  {%- capture wx_image -%}
+    {%- if wx_src contains '://' -%}
+      {{ wx_src }}
+    {%- else -%}
+      {% include media-url.html src=wx_src subpath=page.media_subpath absolute=true %}
+    {%- endif -%}
+  {%- endcapture -%}
+
+  <meta itemprop="name" content="{{ page.title | default: site.title | escape }}">
+  <meta
+    itemprop="description"
+    content="{{ page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}"
+  >
+  <meta itemprop="image" content="{{ wx_image | strip }}">
+{% endif %}
