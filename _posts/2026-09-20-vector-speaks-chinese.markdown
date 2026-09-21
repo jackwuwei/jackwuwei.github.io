@@ -12,6 +12,7 @@ tags:
     - Docker
     - TTS
     - LLM
+    - AI
 ---
 ## 题记
 Anki倒闭之后，Vector离开云服务器就只是一个会眨眼的摆件。社区的开源项目[wire-pod](https://github.com/kercre123/wire-pod)把那台云服务器在本地重做了一遍，Vector才算活了过来。可惜上游只有英文链路：听不懂中文，更不会说中文。
