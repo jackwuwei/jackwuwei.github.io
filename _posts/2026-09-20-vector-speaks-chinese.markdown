@@ -23,7 +23,13 @@ Anki倒闭之后，Vector离开云服务器就只是一个会眨眼的摆件。�
 <video src="/img/vector-chinese-demo-vector.mp4" poster="/img/vector-chinese-demo-vector-poster.jpg" controls playsinline preload="metadata" style="width:100%;border-radius:12px;"></video>
 </div>
 
-这篇文章是两期视频教程的完整文字版，照着做就能走完全程：**先把Vector刷好固件、清掉旧账号，再部署中文版的服务器，配对，最后在网页里点几下完成中文设置**。官方原版wire-pod的安装这里不写，因为用不上——直接装中文分支就行，它就是一个完整的wire-pod。
+这篇文章是下面这期视频的配套图文教程，照着做就能走完全程：**先把Vector刷好固件、清掉旧账号，再部署中文版的服务器，配对，最后在网页里点几下完成中文设置**。官方原版wire-pod的安装这里不写，因为用不上——直接装中文分支就行，它就是一个完整的wire-pod。
+
+<div style="position:relative;width:100%;aspect-ratio:16/9;">
+<iframe src="https://player.bilibili.com/player.html?bvid=BV1t6eq6gEsR&p=1&autoplay=0&high_quality=1&danmaku=0" title="让Vector机器人听中文、说中文视频教程" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" scrolling="no" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe>
+</div>
+
+> 播放不了的话，可以[到B站观看](https://www.bilibili.com/video/BV1t6eq6gEsR/)
 
 ## 整条链路
 你对Vector说一句中文，要经过三站：
