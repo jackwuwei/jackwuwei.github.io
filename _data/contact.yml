@@ -3,6 +3,10 @@
 - type: github
   icon: "fab fa-github"
 
+- type: bilibili
+  icon: "fab fa-bilibili"
+  url: "https://space.bilibili.com/491570247"
+
 - type: email
   icon: "fas fa-envelope"
   noblank: true # open link in current tab
