@@ -44,7 +44,7 @@ Anki倒闭之后，Vector离开云服务器就只是一个会眨眼的摆件。�
 先说结论：**如果只要求它讲中文，不要求Vector的音色，Edge-TTS就够了**，第二个镜像可以不装。
 
 ## 准备
-* 一台Linux主机（Debian/Ubuntu最省事），装好Docker。macOS/Windows的Docker Desktop也能跑，区别见后面的说明；
+* 一台Linux主机（Debian/Ubuntu最省事），装好Docker。**必须是Linux**：wire-pod要用host网络，macOS/Windows的Docker Desktop没有真正的host网络，跑起来能对话，但SDK相关功能连不上机器人；
 * 主机和Vector在**同一个局域网**；
 * 一台带蓝牙的电脑或手机，装Chrome或Edge，刷固件用；
 * 一台你愿意清空数据的Vector。
@@ -105,7 +105,7 @@ docker logs -f wire-pod    # 看启动日志，Ctrl+C退出
 三个地方要注意：
 
 * **`hostname: escapepod`**：Vector就是靠`escapepod.local`这个名字找服务器的；
-* **`network_mode: host`**：Vector固件只连443端口，wire-pod还要在局域网里做mDNS广播，两件事都要靠主机网络；
+* **`network_mode: host`，不能用bridge模式**：Vector固件只连443端口，wire-pod还要在局域网里做mDNS广播，两件事都要靠主机网络。另外wire-pod是按连接的来源地址记录Vector的IP的，bridge模式加`ports:`端口映射时，它看到的来源是Docker网关（`172.17.0.1`之类），网页控制台里连Vector就会报`unknown service Anki.Vector.external_interface.ExternalInterface`——其实连到的是wire-pod自己。所以**不要写`ports:`，也不要改端口**；
 * **数据卷挂到`/data`**：SenseVoice模型约1GB，首次启动时下载进卷里，以后换镜像不用再下一次。第一次启动要等模型下完，日志里能看到进度。
 
 镜像默认就是中文配置（`STT_SERVICE=sherpa-onnx`、`STT_LANGUAGE=zh-CN`），不用传任何环境变量。国内拉不动镜像的话，给Docker配一个镜像加速地址再拉：
@@ -118,7 +118,7 @@ sudo systemctl restart docker
 ```
 
 ### 端口冲突
-host模式下容器和主机共用网络栈，这几个端口被别的进程占着，wire-pod就起不来：
+host模式下容器和主机共用网络栈，下面这几个端口必须空着。端口号是Vector固件和wire-pod写死的，不能换成别的端口；被别的进程占着，wire-pod就起不来：
 
 | 端口 | 用途 | 常见冲突源 |
 |---|---|---|
@@ -141,7 +141,7 @@ sudo systemctl restart systemd-resolved
 ```
 
 ### 确认escapepod.local能解析
-在局域网里另一台机器上`ping escapepod.local`，能通就继续。不通的话（或者你用的是macOS/Windows的Docker Desktop，没有真正的host网络，只能改成映射`80`、`443`、`8080`、`8084`四个端口，mDNS广播出不去），在Linux主机上用avahi手动发布一个别名：
+在局域网里另一台机器上`ping escapepod.local`，能通就继续。不通的话，在Linux主机上用avahi手动发布一个别名：
 
 ```bash
 sudo apt install -y avahi-utils
@@ -256,7 +256,8 @@ Server Settings → **Knowledge Graph**，页面拉到底，`TTS Provider`选**E
 | 症状 | 处理 |
 |---|---|
 | `escapepod.local:8080`打不开 | 先用`http://主机IP:8080`试，能开说明是mDNS的问题，回第三步检查5353端口和avahi别名 |
-| 容器秒退，日志里有`address already in use` | host模式端口被占，按第三步的命令定位 |
+| 容器秒退，日志里有`address already in use` | host模式端口被占，按第三步的命令定位，把占用的服务停掉或挪走，不要改wire-pod的端口 |
+| 控制台连Vector报`unknown service Anki.Vector.external_interface.ExternalInterface` | 容器不是host网络（bridge模式或Docker Desktop），wire-pod记下的Vector IP是Docker网关。改成`network_mode: host`重建容器，再重启一次Vector |
 | Bot Setup里找不到Vector | 不在同一个局域网，或者Vector没连上WiFi |
 | 认证卡住 | 回第二步重新清一次用户数据 |
 | 能识别但不说话 | 看控制台的**Log**页面；Edge-TTS要能上外网，GPT-SoVITS检查Endpoint URL能不能从容器里访问到 |
