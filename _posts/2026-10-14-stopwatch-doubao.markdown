@@ -4,7 +4,7 @@ title:      "你好小鑫：把M5Stack StopWatch变成有表情的AI语音助手
 description: "ESP32-S3直连豆包实时语音，会听、会想、能插话，再给它装上一张会变表情的脸"
 date:       2026-10-14 12:00:00 +0800
 image:
-  path: /img/stopwatch-doubao-front.jpg
+  path: /img/stopwatch-doubao-cover.jpg
 categories: [智能硬件]
 mermaid: true
 tags:
@@ -21,7 +21,7 @@ tags:
 
 于是有了**stopwatch-doubao**。唤醒词是「你好小鑫」，那就叫它小鑫吧。
 
-![拿在手里的小鑫：黑底、蓝色小球和两只白眼睛](/img/stopwatch-doubao-front.jpg)
+<img src="/img/stopwatch-doubao-front.jpg" alt="拿在手里的小鑫：黑底、蓝色小球和两只白眼睛" style="display:block;width:100%;max-width:360px;height:auto;margin:20px auto;">
 
 ## 先看效果
 把小鑫的一天做成了一段视频：早上叫起床、听新闻，中午帮泡面计时，下午控制家里的灯，晚上讲笑话、练英语，最后说声晚安。
