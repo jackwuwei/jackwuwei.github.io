@@ -4,7 +4,7 @@ title:      "墨水屏Homelab看板"
 description: "Kindle、4.2寸墨水屏和共用的FastAPI后端"
 date:       2026-09-12 13:13:14 +0800
 image:
-  path: /img/eink-dashboard-bg.jpg
+  path: /img/eink-dashboard-bilibili-cover.jpg
 categories: [智能硬件]
 tags:
     - IOT
@@ -21,7 +21,11 @@ tags:
 ![4.2寸墨水屏实拍](/img/eink-dashboard-photo.jpg)
 
 ## 演示视频
-<video src="/img/eink-dashboard-promo.mp4" poster="/img/eink-dashboard-promo-poster.jpg" controls playsinline preload="metadata" style="display:block;width:100%;max-width:360px;margin:0 auto;"></video>
+<div style="position:relative;width:100%;aspect-ratio:16/9;">
+<iframe src="https://player.bilibili.com/player.html?bvid=BV1Zje564EBP&p=1&autoplay=0&high_quality=1&danmaku=0" title="墨水屏Homelab看板演示" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" scrolling="no" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe>
+</div>
+
+> 播放不了的话，可以[到B站观看](https://www.bilibili.com/video/BV1Zje564EBP/)
 
 ## 整体架构
 ```
