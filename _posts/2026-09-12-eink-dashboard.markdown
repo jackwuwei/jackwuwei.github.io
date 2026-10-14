@@ -6,6 +6,7 @@ date:       2026-09-12 13:13:14 +0800
 image:
   path: /img/eink-dashboard-bilibili-cover.jpg
 categories: [智能硬件]
+mermaid: true
 tags:
     - IOT
     - Homelab
@@ -28,20 +29,26 @@ tags:
 > 播放不了的话，可以[到B站观看](https://www.bilibili.com/video/BV1Zje564EBP/)
 
 ## 整体架构
-```
-[Glances]  [Home Assistant]  [Claude Usage]  [Open-Meteo]   数据源
-    |             |                |              |
-    +-------------+-------+--------+--------------+
-                          |
-                          v
-                 [dashboard-backend]                  NAS上的Docker，定时采集并缓存
-                          |
-          +---------------+---------------+
-          |                               |
-  GET /dashboard.png              GET /api/eink.json
-          |                               |
-          v                               v
-      [Kindle]                        [ESP8266]
+```mermaid
+flowchart TB
+    subgraph sources["数据源"]
+        glances["Glances<br/>服务器状态"]
+        ha["Home Assistant<br/>路由器、温湿度与风扇"]
+        claude["Claude Usage<br/>订阅用量"]
+        weather["Open-Meteo<br/>天气"]
+    end
+    backend["dashboard-backend · FastAPI<br/>运行在 NAS Docker 中<br/>定时采集并缓存"]
+    png["GET /dashboard.png<br/>服务端绘制灰度 PNG"]
+    json["GET /api/eink.json<br/>精简 JSON 数据"]
+    kindle["Kindle Paperwhite 2<br/>下载图片并刷新墨水屏"]
+    esp["ESP8266 · 4.2 寸墨水屏<br/>本地绘制页面，深睡省电"]
+
+    glances --> backend
+    ha --> backend
+    claude --> backend
+    weather --> backend
+    backend --> png --> kindle
+    backend --> json --> esp
 ```
 
 两块屏的思路完全不同：
